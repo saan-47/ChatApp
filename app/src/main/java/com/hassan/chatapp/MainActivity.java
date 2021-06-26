@@ -3,6 +3,7 @@ package com.hassan.chatapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 if(email.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
                     if(isSigningUp && username.getText().toString().isEmpty()){
                         Toast.makeText(MainActivity.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 }
                 if(isSigningUp){
@@ -90,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    startActivity(new Intent(MainActivity.this, FriendsActivity.class));
                     Toast.makeText(MainActivity.this, "Congrats login successfully", Toast.LENGTH_SHORT).show();
+
                 }else {
                     Toast.makeText(MainActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
