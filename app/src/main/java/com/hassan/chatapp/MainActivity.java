@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         acc  =findViewById(R.id.login);
         signUp = findViewById(R.id.signup);
 
+        //if user is logged id
+        //we will sent it to friends activity
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            startActivity(new Intent(MainActivity.this, FriendsActivity.class));
+        }
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
