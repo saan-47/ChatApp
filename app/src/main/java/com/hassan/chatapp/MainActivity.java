@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    FirebaseDatabase.getInstance().getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(new User(username.getText().toString(),email.getText().toString(), ""));
                     Toast.makeText(MainActivity.this, "You successfully Signed Up.", Toast.LENGTH_SHORT).show();
                 }
                 else {
